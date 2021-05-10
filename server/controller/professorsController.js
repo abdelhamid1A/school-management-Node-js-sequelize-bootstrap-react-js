@@ -7,7 +7,7 @@ class professorController {
     // get all Prof 
 
     getAllProf(req, res) {
-        const sql = "SELECT  *, module_name FROM profs INNER JOIN modules ON profs.moduleId = modules.id "
+        const sql = "SELECT  profs.*, modules.module_name FROM profs INNER JOIN modules ON profs.moduleId = modules.id"
         db.sequelize.query(sql,{ type: Sequelize.QueryTypes.SELECT } )
             .then(result => {
                 res.status(200).send(result)

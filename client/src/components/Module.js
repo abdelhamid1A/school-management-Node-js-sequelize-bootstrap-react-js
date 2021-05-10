@@ -11,6 +11,7 @@ export default function Module() {
     const [coefficient, setCoefficient] = useState('')
     const [search, setSearch] = useState([])
     const [allModule, setAllModule] = useState([])
+    
     function addModule() {
         // console.log(process.env.REACT_APP_API_URL);
         axios.post(process.env.REACT_APP_API_URL + 'module/', { module_name, coefficient })
@@ -20,11 +21,13 @@ export default function Module() {
             })
             .catch(err => console.log(err))
     }
+
     function serch(value) {
         axios.get(process.env.REACT_APP_API_URL + 'module/search/' + value)
             .then(response => setSearch(response.data))
             .catch(err => console.log(err))
     }
+
     function getAll() {
         axios.get(process.env.REACT_APP_API_URL + 'module/')
             .then(response => setAllModule(response.data))
@@ -34,6 +37,7 @@ export default function Module() {
     useEffect(() => {
         getAll()
     }, [])
+
     return (
         <div className="container shadow-lg my-5 py-5 rounded text-center">
             <form className="form-inline mr-auto" target="_self">

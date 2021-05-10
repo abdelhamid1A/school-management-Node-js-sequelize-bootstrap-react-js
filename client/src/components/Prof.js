@@ -70,8 +70,8 @@ export default function Prof() {
                             <th scope="col">action</th>
                         </tr>
                     </thead>
-                    {search && search.map(prof => (
-                        <ProfItems profList={prof} key={prof.id} serch={serch} />
+                    {search && search.map((prof,index) => (
+                        <ProfItems profList={prof} key={index} serch={serch} getAll={getAll} />
                     ))}
                 </table>
                 : ''
@@ -84,13 +84,13 @@ export default function Prof() {
             </div>
             <div className="mb-3">
                 <label htmlFor="exampleInputPassword1" className="form-label">matricule</label>
-                <input type="number" className="form-control" id="exampleInputPassword1"
+                <input type="text" className="form-control" id="exampleInputPassword1"
                     onChange={(e) => setMatricule(e.target.value)}
                 />
             </div>
             <div className="mb-3">
                 <label htmlFor="exampleInputPassword1" className="form-label">date_inscription</label>
-                <input type="number" className="form-control" id="exampleInputPassword1"
+                <input type="date" className="form-control" id="exampleInputPassword1"
                     onChange={(e) => setDate_inscription(e.target.value)}
                 />
             </div>
@@ -98,15 +98,15 @@ export default function Prof() {
                 <select htmlFor="exampleInputPassword1" className="form-control"
                 onChange={(e) => setModuleId(e.target.value)}
                 >Module
-                    <option value="" selected>select module</option>
+                    <option value="" defaultValue>select module</option>
                     {allModule && allModule.map(module => (
-                        <option className="form-control" value={module.id}>{module.module_name}</option>
+                        <option className="form-control" key={module.id} value={module.id}>{module.module_name}</option>
                     ))}
 
                 </select>
             </div>
 
-            <button className="btn btn-primary mb-3" onClick={() => addProf()}>ajoute module</button>
+            <button className="btn btn-primary mb-3" onClick={() => addProf()}>ajoute Prof</button>
 
             <table className="table">
                 <thead>
@@ -118,8 +118,8 @@ export default function Prof() {
                         <th scope="col">action</th>
                     </tr>
                 </thead>
-                {allProf && allProf.map(prof => (
-                    <ProfItems profList={prof} key={prof.id} serch={getAll} />
+                {allProf && allProf.map((prof,index) => (
+                    <ProfItems profList={prof} key={index} serch={serch} getAll={getAll} />
                 ))}
             </table>
         </div>

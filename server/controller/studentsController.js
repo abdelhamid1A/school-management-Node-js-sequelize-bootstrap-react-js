@@ -3,8 +3,13 @@ const { QueryTypes,Sequelize } = require('sequelize');
 const Op = Sequelize.Op;
 
 class studentController{
-    async getAllStudent(req,res){
-        res.status(200).send("hello")
+    getAllStudent(req,res){
+        const sql = "SELECT  students.*, modules.module_name FROM students INNER JOIN modules ON students.moduleId = modules.id"
+        db.sequelize.query(sql,{ type: Sequelize.QueryTypes.SELECT } )
+            .then(result => {
+                res.status(200).send(result)
+            })
+            .catch(err => console.log(err))
     }
 
     // creat Student 
